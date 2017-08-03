@@ -1,0 +1,161 @@
+<html ng-app="app">
+    <head>
+        <title>CCB - Sistema de compras</title>
+
+        <link href="libs/c3/c3.min.css" rel="stylesheet">
+        <script src="libs/d3/d3.min.js"></script>
+        <script src="libs/c3/c3.min.js"></script>
+
+        <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="libs/adminLTE/css/AdminLTE.min.css" rel="stylesheet">
+        <link href="libs/adminLTE/css/skins/skin-blue.min.css" rel="stylesheet">
+        <link href="css/main.css" rel="stylesheet">
+
+        <script src="libs/jquery/jquery-2.1.3.min.js"></script>
+        <script src="libs/angular/angular.min.js"></script>
+        <script src="libs/angular/angular-animate.min.js"></script>
+        <script src="libs/angular/angular-route.min.js"></script>
+        <script src="libs/angular/angular-cookies.min.js"></script>
+        <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+
+        <script src="js/app.env.js"></script>
+        <script src="js/routes.js"></script>
+        <script src="libs/angular-ui/ui-modal.js"></script>
+        <script src="libs/angular-ui/ui-position.js"></script>
+        <script src="libs/angular-ui/ui-bindHtml.js"></script>
+        <script src="libs/angular-ui/ui-typeahead.js"></script>
+        <script src="libs/angular-ui/ui-alert.js"></script>
+
+        <script src="libs/adminLTE/js/app.min.js"></script>
+
+        <script src="js/controllers/ApplicationController.js"></script>
+        <script src="js/controllers/MainController.js"></script>
+        <script src="js/controllers/LoginController.js"></script>
+
+        <script src="js/controllers/Product/ProductListController.js"></script>
+        <script src="js/controllers/Product/ProductNewController.js"></script>
+        <script src="js/controllers/Product/ProductEditController.js"></script>
+
+        <script src="js/controllers/User/UserListController.js"></script>
+        <script src="js/controllers/User/UserNewController.js"></script>
+        <script src="js/controllers/User/UserEditController.js"></script>
+
+        <script src="js/controllers/Church/ChurchListController.js"></script>
+        <script src="js/controllers/Church/ChurchNewController.js"></script>
+        <script src="js/controllers/Church/ChurchEditController.js"></script>
+
+        <script src="js/controllers/Order/OrderListController.js"></script>
+        <script src="js/controllers/Order/OrderNewController.js"></script>
+        <script src="js/controllers/Order/OrderViewController.js"></script>
+        <script src="js/controllers/Order/OrderEditController.js"></script>
+
+        <script src="js/controllers/OpenOrder/OpenOrderListController.js"></script>
+        <script src="js/controllers/OpenOrder/OpenOrderNewController.js"></script>
+        <script src="js/controllers/OpenOrder/OpenOrderViewController.js"></script>
+
+        <script src="js/services/ErrorInterceptor.js"></script>
+        <script src="js/services/ProductService.js"></script>
+        <script src="js/services/UserService.js"></script>
+        <script src="js/services/ChurchService.js"></script>
+        <script src="js/services/OrderService.js"></script>
+        <script src="js/services/ChartService.js"></script>
+        <script src="js/services/AlertService.js"></script>
+        <script src="js/services/LoginService.js"></script>
+        <script src="js/services/OpenOrderService.js"></script>
+
+        <script src="js/directives/fn-list-directive.js"></script>
+    </head>
+    <body ng-controller="ApplicationController" class="sidebar-mini skin-blue">
+        <div class="alert-container">
+            <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)" dismiss-on-timeout="5000" >{{alert.msg}}</alert>
+        </div>
+        <div class="wrapper">
+            <div ng-show="!onLoginScreen">
+                <header class="main-header">
+                    <a href="#" class="logo">
+                            <span class="logo-mini">
+                                CCB
+                            </span>
+                            <span class="logo-lg">
+                                Sistema de Compras
+                            </span>
+                    </a>
+                    <nav class="navbar" role="navigation">
+                        <a class="sidebar-toggle" role="button" data-toggle="offcanvas">
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown user user-menu">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        <img src="../../img/user.png" class="user-image" alt="User Image">
+                                        <span class="hidden-xs">Usuario</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="user-header">
+                                            <img src="../../img/user.png" class="img-circle" alt="User Image">
+                                            <p>
+                                                Usuario
+                                                <small>Member since Nov. 2012</small>
+                                            </p>
+                                        </li>
+                                        <li class="user-footer">
+                                            <div class="text-center">
+                                                <a class="btn btn-default btn-flat" ng-click="logout()">Sign out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <aside class="main-sidebar">
+                    <section class="sidebar">
+                        <ul class="sidebar-menu">
+                            <li ng-class="{'active': location.path() == '/'}">
+                                <a ng-click="changeView('/')">
+                                    <i class="fa fa-dashboard"></i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': location.path() == '/order'}">
+                                <a ng-click="changeView('/order')">
+                                    <i class="fa fa-truck"></i>
+                                    <span>Pedidos</span>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': location.path() == '/openOrder'}">
+                                <a ng-click="changeView('/openOrder')">
+                                    <i class="fa fa-list"></i>
+                                    <span>Pedidos Abertos</span>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': location.path() == '/church'}">
+                                <a ng-click="changeView('/church')">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span>Igrejas</span>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': location.path() == '/product'}">
+                                <a  ng-click="changeView('/product')">
+                                    <i class="fa fa-cubes"></i>
+                                    <span>Produtos</span>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': location.path() == '/user'}">
+                                <a  ng-click="changeView('/user')">
+                                    <i class="fa fa-users"></i>
+                                    <span>Usu&aacute;rios</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+            </div>
+            <div class="content-wrapper" ng-view ng-class="{'login-wrapper': onLoginScreen}"></div>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,40 @@
+<div>
+    <table class="table table-hover">
+        <thead>
+            <th ng-repeat="structureItem in tableDef.structure track by $index">
+                {{structureItem.header}}
+            </th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in tableDef.items track by $index">
+                <td ng-repeat="structureItem in tableDef.structure track by $index">
+
+                    <div ng-switch on="structureItem.type">
+                        <span ng-switch-when="currency">
+                            {{(item[structureItem.cell]  | currency:"R$ ":2) || structureItem.altCell}}
+                        </span>
+                        <span ng-switch-when="date">
+                            {{(item[structureItem.cell]  | date: 'dd/MM/yyyy - HH:mm') || structureItem.altCell}}
+                        </span>
+                        <span ng-switch-default>
+                            {{item[structureItem.cell] || structureItem.altCell}}
+                        </span>
+                    </div>
+                </td>
+                <td class="action-column">
+                    <span ng-if="!!tableDef.actions.view" class="glyphicon glyphicon-eye-open pointer view-btn"
+                          title="Visualizar" ng-click="tableDef.actions.view.onClickFunction(item)"></span>
+                    <span ng-if="!!tableDef.actions.edit" class="glyphicon glyphicon-edit pointer edit-btn"
+                          title="Editar" ng-click="tableDef.actions.edit.onClickFunction(item)"></span>
+                    <span ng-if="!!tableDef.actions.remove" class="glyphicon glyphicon-trash pointer delete-btn"
+                          title="Remover" ng-click="tableDef.actions.remove.onClickFunction(item)"></span>
+                    <span ng-if="!!tableDef.actions.getAsPdf" class="glyphicon glyphicon-save pointer save-btn"
+                          title="Download" ng-click="tableDef.actions.getAsPdf.onClickFunction(item)"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="scrollTop" ng-click="moveToTop()" title="Ir para o topo">
+        <span class="glyphicon glyphicon-arrow-up scroll-top-icon"></span>
+    </div>
+</div>

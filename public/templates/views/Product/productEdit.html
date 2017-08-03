@@ -1,0 +1,41 @@
+<div>
+    <section class="content-header">
+        <h3>Editar Produto</h3>
+    </section>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-body">
+                <form>
+                    <div class="row">
+                        <div class="form-group col-lg-6">
+                            <label>Nome</label>
+                            <input type="text" class="form-control" ng-model="product.name" placeholder="Nome do Produto">
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label>Pre&ccedil;o</label>
+                            <input type="number" class="form-control" ng-model="product.price" placeholder="Pre&ccedil;o do Produto">
+                        </div>
+                        <div class="form-group col-lg-3">
+                            <label>Id do Produto no Fornecedor</label>
+                            <input type="number" class="form-control" ng-model="product.id_on_supplier" placeholder="Id do Produto no Fornecedor">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label>Descri&ccedil;&atilde;o</label>
+                            <textarea class="form-control textarea" placeholder="Descri&ccedil;&atilde;o do Produto" rows="6"
+                                      maxlength="255" name="Description"
+                                      ng-model="product.description"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="box-footer">
+                <div class="pull-right form-button">
+                    <button type="button" class="btn btn-default" ng-click="cancel()">Cancelar</button>
+                    <button type="button" class="btn btn-primary" ng-click="update()">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
