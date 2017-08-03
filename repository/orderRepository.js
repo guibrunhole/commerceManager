@@ -10,21 +10,21 @@
                             'CAST(CAST(o.created_at AS DATE) AS CHAR) AS orderDate, ' +
                             'o.id AS orderId, ' +
                             'o.obs AS orderObservation, ' +
-                            'c.address AS churchAddress, ' +
-                            'c.state_registration AS churchRegistration, ' +
-                            'c.name AS churchName, ' +
-                            'c.city AS churchCity, ' +
-                            'c.state AS churchState, ' +
-                            'c.zipcode AS churchZipCode, ' +
-                            'c.cnpj AS churchCnpj, ' +
-                            'c.phone_number AS churchPhoneNumber,' +
+                            'c.address AS clientAddress, ' +
+                            'c.state_registration AS clientRegistration, ' +
+                            'c.name AS clientName, ' +
+                            'c.city AS clientCity, ' +
+                            'c.state AS clientState, ' +
+                            'c.zipcode AS clientZipCode, ' +
+                            'c.cnpj AS clientCnpj, ' +
+                            'c.phone_number AS clientPhoneNumber,' +
                             'c.responsible_buyer AS buyerName ' +
                         'FROM orders o ' +
-                            'INNER JOIN church c ON c.id = o.church_id ' +
+                            'INNER JOIN client c ON c.id = o.client_id ' +
                         'WHERE o.id = ?;';
 
     var GET_ORDER_DETAILS_PDF = 'select ' +
-                                    'p.id_on_supplier as productId, ' +
+                                    'p.id as productId, ' +
                                     'p.name as productName, ' +
                                     'od.product_quantity as productQuantity, ' +
                                     'od.product_unity as productUnity, ' +
@@ -55,9 +55,9 @@
         return {
             getAll: function(searchParam) {
 
-                var query = 'SELECT o.id,c.name AS church_name,o.created_at,CONCAT(\'R$ \',CAST(CAST(SUM(p.price) AS DECIMAL(10,2)) AS CHAR(20))) AS total ' +
+                var query = 'SELECT o.id,c.name AS client_name,o.created_at,CONCAT(\'R$ \',CAST(CAST(SUM(p.price) AS DECIMAL(10,2)) AS CHAR(20))) AS total ' +
                     'FROM orders o ' +
-                    'INNER JOIN church c ON o.church_id = c.id ' +
+                    'INNER JOIN client c ON o.client_id = c.id ' +
                     'INNER JOIN order_detail od ON o.id = od.order_id ' +
                     'INNER JOIN products p ON od.product_id = p.id ' +
                     'GROUP BY o.id ,c.name,o.created_at';
@@ -86,8 +86,8 @@
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('INSERT INTO orders (church_id, user_id, obs, created_at) VALUES (?, ?, ?, ?);',
-                        [newOrder.churchId, 1, newOrder.obs || null, new Date()],
+                    connection.query('INSERT INTO orders (client_id, user_id, obs, created_at) VALUES (?, ?, ?, ?);',
+                        [newOrder.clientId, 1, newOrder.obs || null, new Date()],
                         function(queryError, resultInfo) {
 
                             if(queryError)
@@ -127,8 +127,8 @@
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('select o.obs as obs, c.id as church_id, c.name as church_name, o.created_at from orders o ' +
-                                        'inner join church c where c.id = o.church_id and o.id = ?',
+                    connection.query('select o.obs as obs, c.id as client_id, c.name as client_name, o.created_at from orders o ' +
+                                        'inner join client c where c.id = o.client_id and o.id = ?',
                                         [orderId], function(queryError, row) {
 
                         if(queryError) {

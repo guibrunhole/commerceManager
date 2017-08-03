@@ -1,6 +1,6 @@
 <html ng-app="app">
     <head>
-        <title>CCB - Sistema de compras</title>
+        <title>Le Brugnoli - Massas Artesanais</title>
 
         <link href="libs/c3/c3.min.css" rel="stylesheet">
         <script src="libs/d3/d3.min.js"></script>
@@ -41,18 +41,14 @@
         <script src="js/controllers/User/UserNewController.js"></script>
         <script src="js/controllers/User/UserEditController.js"></script>
 
-        <script src="js/controllers/Church/ChurchListController.js"></script>
-        <script src="js/controllers/Church/ChurchNewController.js"></script>
-        <script src="js/controllers/Church/ChurchEditController.js"></script>
+        <script src="js/controllers/Client/ClientListController.js"></script>
+        <script src="js/controllers/Client/ClientNewController.js"></script>
+        <script src="js/controllers/Client/ClientEditController.js"></script>
 
         <script src="js/controllers/Order/OrderListController.js"></script>
         <script src="js/controllers/Order/OrderNewController.js"></script>
         <script src="js/controllers/Order/OrderViewController.js"></script>
         <script src="js/controllers/Order/OrderEditController.js"></script>
-
-        <script src="js/controllers/OpenOrder/OpenOrderListController.js"></script>
-        <script src="js/controllers/OpenOrder/OpenOrderNewController.js"></script>
-        <script src="js/controllers/OpenOrder/OpenOrderViewController.js"></script>
 
         <script src="js/services/ErrorInterceptor.js"></script>
         <script src="js/services/ProductService.js"></script>
@@ -75,10 +71,10 @@
                 <header class="main-header">
                     <a href="#" class="logo">
                             <span class="logo-mini">
-                                CCB
+                                LB
                             </span>
                             <span class="logo-lg">
-                                Sistema de Compras
+                                Le Brugnoli
                             </span>
                     </a>
                     <nav class="navbar" role="navigation">
@@ -126,16 +122,10 @@
                                     <span>Pedidos</span>
                                 </a>
                             </li>
-                            <li ng-class="{'active': location.path() == '/openOrder'}">
-                                <a ng-click="changeView('/openOrder')">
-                                    <i class="fa fa-list"></i>
-                                    <span>Pedidos Abertos</span>
-                                </a>
-                            </li>
-                            <li ng-class="{'active': location.path() == '/church'}">
-                                <a ng-click="changeView('/church')">
+                            <li ng-class="{'active': location.path() == '/client'}">
+                                <a ng-click="changeView('/client')">
                                     <i class="fa fa-bell-o"></i>
-                                    <span>Igrejas</span>
+                                    <span>Clientes</span>
                                 </a>
                             </li>
                             <li ng-class="{'active': location.path() == '/product'}">
@@ -158,4 +148,3 @@
         </div>
     </body>
 </html>
-

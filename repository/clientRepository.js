@@ -25,7 +25,7 @@
         return {
             getAll: function(searchParam) {
 
-                var query = 'SELECT * FROM church';
+                var query = 'SELECT * FROM client';
                 var queryParams = [];
 
                 if(searchParam) {
@@ -44,14 +44,14 @@
                     });
                 });
             },
-            add: function(newChurch) {
+            add: function(newClient) {
 
                 return queryFromPool(function(deferred, connection) {
 
                     connection.query('INSERT INTO church (name, user_id, cnpj, address, city, state, zipcode, phone_number, responsible_buyer, state_registration) ' +
                                         'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                        [newChurch.name, newChurch.user_id || null, newChurch.cnpj, newChurch.address, newChurch.city,
-                            newChurch.state, newChurch.zipcode || null, newChurch.phone_number, newChurch.responsible_buyer, newChurch.state_registration], function(queryError, resultInfo) {
+                        [newClient.name, newClient.user_id || null, newClient.cnpj, newClient.address, newClient.city,
+                            newClient.state, newClient.zipcode || null, newClient.phone_number, newClient.responsible_buyer, newClient.state_registration], function(queryError, resultInfo) {
 
                             if(queryError)
                                 deferred.reject(queryError);
@@ -60,11 +60,11 @@
                         });
                 });
             },
-            getById: function(churchId) {
+            getById: function(clientId) {
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('SELECT * FROM church WHERE id = ?', [churchId], function(queryError, row) {
+                    connection.query('SELECT * FROM client WHERE id = ?', [clientId], function(queryError, row) {
 
                         if(queryError)
                             deferred.reject(queryError);
@@ -73,16 +73,16 @@
                     });
                 });
             },
-            update: function(churchId, updatedChurch) {
+            update: function(clientId, updatedClient) {
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('UPDATE church SET name = ?, user_id = ?, cnpj = ?' +
+                    connection.query('UPDATE client SET name = ?, user_id = ?, cnpj = ?' +
                         ', address = ?, city = ?, state = ?, zipcode = ?, phone_number = ?, responsible_buyer = ?' +
                         ', state_registration = ? WHERE id = ?',
-                        [updatedChurch.name, updatedChurch.user_id || null, updatedChurch.cnpj,
-                            updatedChurch.address, updatedChurch.city, updatedChurch.state, updatedChurch.zipcode || null,
-                            updatedChurch.phone_number, updatedChurch.responsible_buyer, updatedChurch.state_registration ,churchId], function(queryError) {
+                        [updatedClient.name, updatedClient.user_id || null, updatedClient.cnpj,
+                            updatedClient.address, updatedClient.city, updatedClient.state, updatedClient.zipcode || null,
+                            updatedClient.phone_number, updatedClient.responsible_buyer, updatedClient.state_registration ,clientId], function(queryError) {
 
                             if(queryError)
                                 deferred.reject(queryError);
@@ -91,11 +91,11 @@
                         });
                 });
             },
-            removeById: function(churchId) {
+            removeById: function(clientId) {
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('DELETE FROM church WHERE id = ?', [churchId], function(queryError) {
+                    connection.query('DELETE FROM client WHERE id = ?', [clientId], function(queryError) {
 
                         if(queryError)
                             deferred.reject(queryError);
