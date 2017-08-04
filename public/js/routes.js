@@ -34,19 +34,19 @@
                 controller: 'MainController',
                 resolve: { loggedIn: verifyLogin }
             })
-            .when('/church', {
-                templateUrl: '/templates/views/Church/churchList.html',
-                controller: 'ChurchListController',
+            .when('/client', {
+                templateUrl: '/templates/views/Client/clientList.html',
+                controller: 'ClientListController',
                 resolve: { loggedIn: verifyLogin }
             })
-            .when('/church/new', {
-                templateUrl: '/templates/views/Church/churchNew.html',
-                controller: 'ChurchNewController',
+            .when('/client/new', {
+                templateUrl: '/templates/views/Client/clientNew.html',
+                controller: 'ClientNewController',
                 resolve: { loggedIn: verifyLogin }
             })
-            .when('/church/edit/:id', {
-                templateUrl: '/templates/views/Church/churchEdit.html',
-                controller: 'ChurchEditController',
+            .when('/client/edit/:id', {
+                templateUrl: '/templates/views/Client/clientEdit.html',
+                controller: 'ClientEditController',
                 resolve: { loggedIn: verifyLogin }
             })
             .when('/product', {
@@ -97,21 +97,6 @@
             .when('/order/edit/:orderId', {
                 templateUrl: '/templates/views/Order/orderEdit.html',
                 controller: 'OrderEditController',
-                resolve: { loggedIn: verifyLogin }
-            })
-            .when('/openOrder', {
-                templateUrl: '/templates/views/OpenOrder/openOrderList.html',
-                controller: 'OpenOrderListController',
-                resolve: { loggedIn: verifyLogin }
-            })
-            .when('/openOrder/new', {
-                templateUrl: '/templates/views/OpenOrder/openOrderNew.html',
-                controller: 'OpenOrderNewController',
-                resolve: { loggedIn: verifyLogin }
-            })
-            .when('/openOrder/view/:orderId', {
-                templateUrl: '/templates/views/OpenOrder/openOrderView.html',
-                controller: 'OpenOrderViewController',
                 resolve: { loggedIn: verifyLogin }
             })
             .otherwise({

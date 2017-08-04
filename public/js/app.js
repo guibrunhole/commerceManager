@@ -13,5 +13,5 @@
         $httpProvider.interceptors.push('ErrorInterceptor');
     });
 
-    app.constant('BASE_API_ADDRESS', process.env.BASE_API_ADDRESS);
+    app.constant('BASE_ADDRESS', process.env.BASE_ADDRESS);
 })();

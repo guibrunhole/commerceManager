@@ -9,7 +9,7 @@
         $scope.tableDef = {
             structure: [
                 { header: 'Nº Pedido', cell: 'id'},
-                { header: 'Nome da Igreja', cell: 'church_name'},
+                { header: 'Nome do Cliente', cell: 'client_name'},
                 { header: 'Data', cell: 'created_at', type: 'date'},
                 { header: 'Total', cell: 'total'}
             ],
@@ -69,7 +69,7 @@
             $modal.open({
                 templateUrl: '../templates/views/Modal/pdfPrint.html',
                 backdropClass: 'full-height',
-                controller: function($scope, $modalInstance, OrderService, orderId, $window, BASE_API_ADDRESS, AlertService) {
+                controller: function($scope, $modalInstance, OrderService, orderId, $window, BASE_ADDRESS, AlertService) {
 
                     $scope.pdf = {
                         name: undefined,
@@ -85,7 +85,7 @@
                         OrderService.getAsPdf(orderId, $scope.pdf.name, $scope.pdf.address)
                             .success(function(result) {
 
-                                $window.open(BASE_API_ADDRESS + '/' + result);
+                                $window.open(BASE_ADDRESS + '/' + result);
                                 $modalInstance.close();
                                 AlertService.addSuccess('Relatório gerado com sucesso!');
                             })

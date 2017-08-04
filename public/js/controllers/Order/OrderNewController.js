@@ -2,10 +2,10 @@
 
     'use strict';
 
-    function orderNewCtrl($scope, OrderService, ProductService, ChurchService, $location, AlertService) {
+    function orderNewCtrl($scope, OrderService, ProductService, ClientService, $location, AlertService) {
 
         $scope.order = {
-            churchId: undefined,
+            clientId: undefined,
             products: []
         };
 
@@ -52,18 +52,18 @@
                 });
         };
 
-        $scope.getChurches = function(searchParam) {
+        $scope.getClients = function(searchParam) {
 
-            return ChurchService.getAll(searchParam)
+            return ClientService.getAll(searchParam)
                 .then(function(res) {
 
                     return res.data;
                 });
         };
 
-        $scope.setChurch = function(selectedItem) {
+        $scope.setClient = function(selectedItem) {
 
-            $scope.order.churchId = angular.copy(selectedItem.id);
+            $scope.order.clientId = angular.copy(selectedItem.id);
         };
 
         $scope.getProducts = function(searchParam) {

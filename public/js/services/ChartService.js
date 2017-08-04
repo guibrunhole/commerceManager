@@ -5,18 +5,18 @@
 
     'use strict';
 
-    function chartService($http, BASE_API_ADDRESS) {
+    function chartService($http, BASE_ADDRESS) {
 
         return {
 
             getQuantity: function (){
 
-                return $http.get(BASE_API_ADDRESS + '/chart');
+                return $http.get(BASE_ADDRESS + '/chart');
 
             }
         }
     }
 
-    angular.module('app.services').factory('ChartService', ['$http', 'BASE_API_ADDRESS', chartService]);
+    angular.module('app.services').factory('ChartService', ['$http', 'BASE_ADDRESS', chartService]);
 
 })();

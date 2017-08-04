@@ -13,5 +13,5 @@
         $httpProvider.interceptors.push('ErrorInterceptor');
     });
 
-    app.constant('BASE_API_ADDRESS', "http://localhost:3010");
+    app.constant('BASE_ADDRESS', "http://localhost:3030");
 })();

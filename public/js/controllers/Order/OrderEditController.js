@@ -2,17 +2,17 @@
 
     'use strict';
 
-    function orderEditController($scope, OrderService, $routeParams, ProductService, ChurchService, $location, AlertService) {
+    function orderEditController($scope, OrderService, $routeParams, ProductService, ClientService, $location, AlertService) {
 
         $scope.setLocationTitle('Pedidos > Editar');
 
         $scope.order = {
             obs: undefined,
-            churchId: undefined,
+            clientId: undefined,
             products: []
         };
 
-        $scope.church = undefined;
+        $scope.client = undefined;
 
         $scope.unities = [
             {label: 'Unidade', value: 'UN'},

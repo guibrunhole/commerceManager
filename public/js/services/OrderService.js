@@ -2,7 +2,7 @@
 
     'use strict';
 
-    function orderService($http, BASE_API_ADDRESS, $window) {
+    function orderService($http, BASE_ADDRESS, $window) {
 
         return {
 
@@ -12,23 +12,23 @@
                     searchParam: searchParam
                 };
 
-                return $http.get(BASE_API_ADDRESS + '/order', {params: data});
+                return $http.get(BASE_ADDRESS + '/order', {params: data});
             },
             getById: function(orderId) {
 
-                return $http.get(BASE_API_ADDRESS + '/order/' + orderId);
+                return $http.get(BASE_ADDRESS + '/order/' + orderId);
             },
             remove: function(orderId) {
 
-                return $http.delete(BASE_API_ADDRESS + '/order/' + orderId);
+                return $http.delete(BASE_ADDRESS + '/order/' + orderId);
             },
             add: function(newOrder) {
 
-                return $http.post(BASE_API_ADDRESS + '/order', newOrder);
+                return $http.post(BASE_ADDRESS + '/order', newOrder);
             },
             update: function(orderId, updatedOrder) {
 
-                return $http.put(BASE_API_ADDRESS + '/order/' + orderId, updatedOrder);
+                return $http.put(BASE_ADDRESS + '/order/' + orderId, updatedOrder);
             },
             getAsPdf: function(orderId, pdfName, sendTo) {
                 //ALTEREI AQUI PARA ACEITAR O CORPO DO EMAIL
@@ -36,10 +36,10 @@
                     pdfName: pdfName,
                     sendTo: sendTo
                 };
-                return $http.get(BASE_API_ADDRESS + '/order/' + orderId + '/pdf', {params: data});
+                return $http.get(BASE_ADDRESS + '/order/' + orderId + '/pdf', {params: data});
             }
         };
     }
 
-    angular.module('app.services').service('OrderService', ['$http', 'BASE_API_ADDRESS', '$window', orderService]);
+    angular.module('app.services').service('OrderService', ['$http', 'BASE_ADDRESS', '$window', orderService]);
 })();
