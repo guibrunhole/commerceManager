@@ -48,7 +48,7 @@
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('INSERT INTO church (name, user_id, cnpj, address, city, state, zipcode, phone_number, responsible_buyer, state_registration) ' +
+                    connection.query('INSERT INTO client (name, user_id, cnpj, address, city, state, zipcode, phone_number, responsible_buyer, state_registration) ' +
                                         'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
                         [newClient.name, newClient.user_id || null, newClient.cnpj, newClient.address, newClient.city,
                             newClient.state, newClient.zipcode || null, newClient.phone_number, newClient.responsible_buyer, newClient.state_registration], function(queryError, resultInfo) {

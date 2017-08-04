@@ -7,16 +7,14 @@
         var ProductRepository = require('./repository/productRepository')(pool);
         var UserRepository = require('./repository/userRepository')(pool);
         var OrderRepository = require('./repository/orderRepository')(pool);
-        var ChurchRepository = require('./repository/churchRepository')(pool);
+        var ClientRepository = require('./repository/clientRepository')(pool);
         var ChartRepository = require('./repository/chartRepository')(pool);
-        var OpenOrderRepository = require('./repository/openOrderRepository')(pool);
 
         var ProductModule = require('./modules/productModule')(ProductRepository);
         var UserModule = require('./modules/userModule')(UserRepository);
-        var ChurchModule = require('./modules/churchModule')(ChurchRepository);
-        var OrderModule = require('./modules/orderModule')(OrderRepository, ChurchRepository, UserRepository);
+        var ClientModule = require('./modules/clientModule')(ClientRepository);
+        var OrderModule = require('./modules/orderModule')(OrderRepository, ClientRepository, UserRepository);
         var ChartModule = require('./modules/chartModule')(ChartRepository);
-        var OpenOrderModule = require('./modules/openOrderModule')(OpenOrderRepository);
 
         app.post('/login', passport.authenticate('local'), function(req, res) {
             delete req.user.password;
@@ -59,12 +57,12 @@
         app.put('/user/:id', ensureAuthenticated, UserModule.update);
         app.delete('/user/:id', ensureAuthenticated, UserModule.remove);
 
-        // Church
-        app.get('/church', ensureAuthenticated, ChurchModule.getAll);
-        app.post('/church', ensureAuthenticated, ChurchModule.addNew);
-        app.get('/church/:id', ensureAuthenticated, ChurchModule.getById);
-        app.put('/church/:id', ensureAuthenticated, ChurchModule.update);
-        app.delete('/church/:id', ensureAuthenticated, ChurchModule.remove);
+        // Client
+        app.get('/client', ensureAuthenticated, ClientModule.getAll);
+        app.post('/client', ensureAuthenticated, ClientModule.addNew);
+        app.get('/client/:id', ensureAuthenticated, ClientModule.getById);
+        app.put('/client/:id', ensureAuthenticated, ClientModule.update);
+        app.delete('/client/:id', ensureAuthenticated, ClientModule.remove);
 
         // Order
         app.get('/order', ensureAuthenticated, OrderModule.getAll);
@@ -76,13 +74,6 @@
 
         // Chart
         app.get('/chart', ensureAuthenticated, ChartModule.getQuantity);
-
-        // Open Order
-        app.get('/openOrder', ensureAuthenticated, OpenOrderModule.getAll);
-        app.post('/openOrder', ensureAuthenticated, OpenOrderModule.addNew);
-        app.get('/openOrder/:id', ensureAuthenticated, OpenOrderModule.getById);
-        app.delete('/openOrder/:id', ensureAuthenticated, OpenOrderModule.remove);
-        app.get('/openOrder/:id/pdf', ensureAuthenticated, OpenOrderModule.getAsPdf);
 
         app.use(function (req, res, next) {
             res.status(404).send('Página não encontrada.');

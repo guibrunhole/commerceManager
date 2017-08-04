@@ -12,29 +12,29 @@
 
             return  "<div class='col-xs-12'>" +
                         "<div class='col-xs-6'>" +
-                            "<label>Casa de oração:</label> " + order.churchName +
+                            "<label>Cliente:</label> " + order.clientName +
                         "</div>" +
                         "<div class='col-xs-6'>" +
-                            "<label>Inscrição Municipal:</label> " + order.churchRegistration +
+                            "<label>Inscrição Municipal:</label> " + order.clientRegistration +
                         "</div>" +
                     "</div>" +
                     "<div class='col-xs-12'>" +
                         "<div class='col-xs-12'>" +
-                            "<label>Endereço:</label> " + order.churchAddress +
+                            "<label>Endereço:</label> " + order.clientAddress +
                         "</div>" +
                     "</div>" +
                     "<div class='col-xs-12'>" +
                         "<div class='col-xs-3'>" +
-                            "<label>Cidade:</label> " + order.churchCity +
+                            "<label>Cidade:</label> " + order.clientCity +
                         "</div>" +
                         "<div class='col-xs-2'>" +
-                            "<label>UF:</label> " + order.churchState +
+                            "<label>UF:</label> " + order.clientState +
                         "</div>" +
                         "<div class='col-xs-3'>" +
-                            "<label>CEP:</label> " + (order.churchZipCode ? order.churchZipCode : 'Não informado') +
+                            "<label>CEP:</label> " + (order.clientZipCode ? order.clientZipCode : 'Não informado') +
                         "</div>" +
                         "<div class='col-xs-4'>" +
-                            "<label>CNPJ:</label> " + order.churchCnpj +
+                            "<label>CNPJ:</label> " + order.clientCnpj +
                         "</div>" +
                     "</div>" +
                     "<div class='col-xs-12'>" +
@@ -42,7 +42,7 @@
                             "<label>Comprador:</label> " + order.buyerName +
                         "</div>" +
                         "<div class='col-xs-4'>" +
-                            "<label>Telefone:</label> " + order.churchPhoneNumber +
+                            "<label>Telefone:</label> " + order.clientPhoneNumber +
                         "</div>" +
                     "</div>" +
                     "<div class='col-xs-12'>" +
@@ -102,12 +102,12 @@
 
             var parsedHtml = "<html>" +
                 "<head>" +
-                    "<link rel='stylesheet' href='" + process.env.BASE_API_ADDRESS + "/libs/bootstrap/css/bootstrap.css' media='print'>" +
+                    "<link rel='stylesheet' href='" + process.env.BASE_ADDRESS + "/libs/bootstrap/css/bootstrap.css' media='print'>" +
                 "</head>" +
                 "<body style='font-size: 1.1em;'>" +
                     "<div class='row'>" +
                         "<h1 class='text-center'>" +
-                        "CONGREGAÇÃO CRISTÃ NO BRASIL" +
+                        "LE BRUGNOLI - MASSAS ARTESANAIS" +
                         "</h1>" +
                     "</div>" +
                     "<div class='row'>" +

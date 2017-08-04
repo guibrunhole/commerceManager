@@ -2,12 +2,12 @@
 
     'use strict';
 
-    module.exports = function(churchRepository) {
+    module.exports = function(clientRepository) {
 
         return {
             getAll: function(req, res, next) {
 
-                churchRepository.getAll(req.query.searchParam).then(function(results) {
+                clientRepository.getAll(req.query.searchParam).then(function(results) {
 
                     res.send(results);
                 }, function(err) {
@@ -17,9 +17,9 @@
             },
             addNew: function(req, res, next) {
 
-                churchRepository.add(req.body).then(function(createdChurchId) {
+                clientRepository.add(req.body).then(function(createdClientId) {
 
-                    res.send('Church created with Id: ' + createdChurchId);
+                    res.send('Client created with Id: ' + createdClientId);
                 }, function(err) {
 
                     next(err);
@@ -27,10 +27,10 @@
             },
             getById: function(req, res, next) {
 
-                churchRepository.getById(req.params.id).then(function(result) {
+                clientRepository.getById(req.params.id).then(function(result) {
 
                     if(!result || !result[0] || result.length < 1)
-                        res.status(404).send('Church not found :(');
+                        res.status(404).send('Client not found :(');
                     else
                         res.send(result[0]);
                 }, function(err) {
@@ -40,16 +40,16 @@
             },
             update: function(req, res, next) {
 
-                churchRepository.getById(req.params.id).then(function(result) {
+                clientRepository.getById(req.params.id).then(function(result) {
 
                     if(!result || !result[0] || result.length < 1) {
 
-                        res.status(404).send('Church not found :(');
+                        res.status(404).send('Client not found :(');
                     } else {
 
-                        churchRepository.update(req.params.id, req.body).then(function () {
+                        clientRepository.update(req.params.id, req.body).then(function () {
 
-                            res.send('Church updated!');
+                            res.send('Client updated!');
                         }, function (err) {
 
                             errorThrown(err);
@@ -62,16 +62,16 @@
             },
             remove: function(req, res, next) {
 
-                churchRepository.getById(req.params.id).then(function(result) {
+                clientRepository.getById(req.params.id).then(function(result) {
 
                     if(!result || !result[0] || result.length < 1) {
 
-                        res.status(404).send('Church not found :(');
+                        res.status(404).send('Client not found :(');
                     } else {
 
-                        churchRepository.removeById(req.params.id).then(function() {
+                        clientRepository.removeById(req.params.id).then(function() {
 
-                            res.send('Church removed!');
+                            res.send('Client removed!');
                         }, function(err) {
 
                             errorThrown(err);

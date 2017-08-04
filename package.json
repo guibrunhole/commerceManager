@@ -1,5 +1,5 @@
 {
-  "name": "simpleManager",
+  "name": "commerceManager",
   "version": "0.0.1",
   "description": "It's so simple but yet, so pretty!",
   "main": "server.js",
