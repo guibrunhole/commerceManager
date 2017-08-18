@@ -46,7 +46,7 @@
 
     require('./api-mapping')(app, pool, passport);
 
-    var server = app.listen(process.env.SV_PORT || 3030, function () {
+    var server = app.listen(process.env.SVPORT || 3030, function () {
 
         console.log('I\'m running here bro %s! Go check me out ;)', server.address().port);
     });
