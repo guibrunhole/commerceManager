@@ -55,7 +55,7 @@
         return {
             getAll: function(searchParam) {
 
-                var query = 'SELECT o.id,c.name AS client_name,o.created_at,CONCAT(\'R$ \',CAST(CAST(SUM(p.price) AS DECIMAL(10,2)) AS CHAR(20))) AS total ' +
+                var query = 'SELECT o.id,c.name AS client_name,o.created_at,CONCAT(\'R$ \',CAST(CAST(SUM(od.product_quantity * p.price) AS DECIMAL(10,2)) AS CHAR(20))) AS total ' +
                     'FROM orders o ' +
                     'INNER JOIN client c ON o.client_id = c.id ' +
                     'INNER JOIN order_detail od ON o.id = od.order_id ' +

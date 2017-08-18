@@ -49,6 +49,21 @@
                 controller: 'ClientEditController',
                 resolve: { loggedIn: verifyLogin }
             })
+            .when('/supplier', {
+                templateUrl: '/templates/views/Supplier/supplierList.html',
+                controller: 'SupplierListController',
+                resolve: { loggedIn: verifyLogin }
+            })
+            .when('/supplier/new', {
+                templateUrl: '/templates/views/Supplier/supplierNew.html',
+                controller: 'SupplierNewController',
+                resolve: { loggedIn: verifyLogin }
+            })
+            .when('/supplier/edit/:id', {
+                templateUrl: '/templates/views/Supplier/supplierEdit.html',
+                controller: 'SupplierEditController',
+                resolve: { loggedIn: verifyLogin }
+            })
             .when('/product', {
                 templateUrl: '/templates/views/Product/productList.html',
                 controller: 'ProductListController',

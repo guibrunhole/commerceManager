@@ -45,6 +45,10 @@
         <script src="js/controllers/Client/ClientNewController.js"></script>
         <script src="js/controllers/Client/ClientEditController.js"></script>
 
+        <script src="js/controllers/Supplier/SupplierListController.js"></script>
+        <script src="js/controllers/Supplier/SupplierNewController.js"></script>
+        <script src="js/controllers/Supplier/SupplierEditController.js"></script>
+
         <script src="js/controllers/Order/OrderListController.js"></script>
         <script src="js/controllers/Order/OrderNewController.js"></script>
         <script src="js/controllers/Order/OrderViewController.js"></script>
@@ -58,6 +62,7 @@
         <script src="js/services/ChartService.js"></script>
         <script src="js/services/AlertService.js"></script>
         <script src="js/services/LoginService.js"></script>
+        <script src="js/services/SupplierService.js"></script>
 
         <script src="js/directives/fn-list-directive.js"></script>
     </head>
@@ -131,6 +136,12 @@
                                 <a  ng-click="changeView('/product')">
                                     <i class="fa fa-cubes"></i>
                                     <span>Produtos</span>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': location.path() == '/supplier'}">
+                                <a  ng-click="changeView('/supplier')">
+                                    <i class="fa fa-users"></i>
+                                    <span>Fornecedores</span>
                                 </a>
                             </li>
                             <li ng-class="{'active': location.path() == '/user'}">

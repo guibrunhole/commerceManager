@@ -8,11 +8,13 @@
         var UserRepository = require('./repository/userRepository')(pool);
         var OrderRepository = require('./repository/orderRepository')(pool);
         var ClientRepository = require('./repository/clientRepository')(pool);
+        var SupplierRepository = require('./repository/supplierRepository')(pool);
         var ChartRepository = require('./repository/chartRepository')(pool);
 
         var ProductModule = require('./modules/productModule')(ProductRepository);
         var UserModule = require('./modules/userModule')(UserRepository);
         var ClientModule = require('./modules/clientModule')(ClientRepository);
+        var SupplierModule = require('./modules/supplierModule')(SupplierRepository);
         var OrderModule = require('./modules/orderModule')(OrderRepository, ClientRepository, UserRepository);
         var ChartModule = require('./modules/chartModule')(ChartRepository);
 
@@ -63,6 +65,13 @@
         app.get('/client/:id', ensureAuthenticated, ClientModule.getById);
         app.put('/client/:id', ensureAuthenticated, ClientModule.update);
         app.delete('/client/:id', ensureAuthenticated, ClientModule.remove);
+
+        // Supplier
+        app.get('/supplier', ensureAuthenticated, SupplierModule.getAll);
+        app.post('/supplier', ensureAuthenticated, SupplierModule.addNew);
+        app.get('/supplier/:id', ensureAuthenticated, SupplierModule.getById);
+        app.put('/supplier/:id', ensureAuthenticated, SupplierModule.update);
+        app.delete('/supplier/:id', ensureAuthenticated, SupplierModule.remove);
 
         // Order
         app.get('/order', ensureAuthenticated, OrderModule.getAll);
