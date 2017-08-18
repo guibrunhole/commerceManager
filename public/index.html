@@ -49,6 +49,10 @@
         <script src="js/controllers/Supplier/SupplierNewController.js"></script>
         <script src="js/controllers/Supplier/SupplierEditController.js"></script>
 
+        <script src="js/controllers/Expense/ExpenseListController.js"></script>
+        <script src="js/controllers/Expense/ExpenseNewController.js"></script>
+        <script src="js/controllers/Expense/ExpenseViewController.js"></script>
+
         <script src="js/controllers/Order/OrderListController.js"></script>
         <script src="js/controllers/Order/OrderNewController.js"></script>
         <script src="js/controllers/Order/OrderViewController.js"></script>
@@ -63,6 +67,7 @@
         <script src="js/services/AlertService.js"></script>
         <script src="js/services/LoginService.js"></script>
         <script src="js/services/SupplierService.js"></script>
+        <script src="js/services/ExpenseService.js"></script>
 
         <script src="js/directives/fn-list-directive.js"></script>
     </head>
@@ -136,6 +141,12 @@
                                 <a  ng-click="changeView('/product')">
                                     <i class="fa fa-cubes"></i>
                                     <span>Produtos</span>
+                                </a>
+                            </li>
+                            <li ng-class="{'active': location.path() == '/expense'}">
+                                <a  ng-click="changeView('/expense')">
+                                    <i class="fa fa-cubes"></i>
+                                    <span>Despesas</span>
                                 </a>
                             </li>
                             <li ng-class="{'active': location.path() == '/supplier'}">

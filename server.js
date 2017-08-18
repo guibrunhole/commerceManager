@@ -16,6 +16,7 @@
         host: process.env.DBHOST || 'localhost',
         user: process.env.DBUSER || 'commerce',
         // password : process.env.DBPASS || '',
+        password: 'Lebrugnoli@123',
         port : process.env.DBPORT || 3306,
         // database: process.env.DBNAME || 'commerce_manager',
         database: 'commerce_manager',

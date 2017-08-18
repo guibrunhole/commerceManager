@@ -94,6 +94,21 @@
                 controller: 'UserEditController',
                 resolve: { loggedIn: verifyLogin }
             })
+            .when('/expense', {
+                templateUrl: '/templates/views/Expense/expenseList.html',
+                controller: 'ExpenseListController',
+                resolve: { loggedIn: verifyLogin }
+            })
+            .when('/expense/new', {
+                templateUrl: '/templates/views/Expense/expenseNew.html',
+                controller: 'ExpenseNewController',
+                resolve: { loggedIn: verifyLogin }
+            })
+            .when('/expense/view/:id', {
+                templateUrl: '/templates/views/Expense/expenseView.html',
+                controller: 'ExpenseViewController',
+                resolve: { loggedIn: verifyLogin }
+            })
             .when('/order', {
                 templateUrl: '/templates/views/Order/orderList.html',
                 controller: 'OrderListController',

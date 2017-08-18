@@ -10,6 +10,7 @@
         var ClientRepository = require('./repository/clientRepository')(pool);
         var SupplierRepository = require('./repository/supplierRepository')(pool);
         var ChartRepository = require('./repository/chartRepository')(pool);
+        var ExpenseRepository = require('./repository/expenseRepository')(pool);
 
         var ProductModule = require('./modules/productModule')(ProductRepository);
         var UserModule = require('./modules/userModule')(UserRepository);
@@ -17,6 +18,7 @@
         var SupplierModule = require('./modules/supplierModule')(SupplierRepository);
         var OrderModule = require('./modules/orderModule')(OrderRepository, ClientRepository, UserRepository);
         var ChartModule = require('./modules/chartModule')(ChartRepository);
+        var ExpenseModule = require('./modules/expenseModule')(ExpenseRepository);
 
         app.post('/login', passport.authenticate('local'), function(req, res) {
             delete req.user.password;
@@ -72,6 +74,12 @@
         app.get('/supplier/:id', ensureAuthenticated, SupplierModule.getById);
         app.put('/supplier/:id', ensureAuthenticated, SupplierModule.update);
         app.delete('/supplier/:id', ensureAuthenticated, SupplierModule.remove);
+
+        // Expense
+        app.get('/expense', ensureAuthenticated, ExpenseModule.getAll);
+        app.post('/expense', ensureAuthenticated, ExpenseModule.addNew);
+        app.get('/expense/:id', ensureAuthenticated, ExpenseModule.getById);
+        app.delete('/expense/:id', ensureAuthenticated, ExpenseModule.remove);
 
         // Order
         app.get('/order', ensureAuthenticated, OrderModule.getAll);
