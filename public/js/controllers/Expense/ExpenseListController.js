@@ -8,7 +8,8 @@
             structure: [
                 { header: 'Nº Despesa', cell: 'id'},
                 { header: 'Nome do Fornecedor', cell: 'supplier_name'},
-                { header: 'Data', cell: 'created_at', type: 'date'}
+                { header: 'Data', cell: 'created_at', type: 'date'},
+                { header: 'Valor', cell: 'total'}
             ],
             actions: {
                 remove: {

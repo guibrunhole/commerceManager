@@ -29,8 +29,10 @@
         return {
             getAll: function(searchParam) {
 
-                var query = 'SELECT o.id, c.name AS supplier_name, o.created_at FROM expense o ' +
-                    'INNER JOIN supplier c ON o.supplier_id = c.id';
+                var query = 'select o.id, c.id as supplier_id, c.name as supplier_name, o.created_at, sum(ed.product_price*ed.product_quantity) total from expense o ' +
+                    'INNER JOIN supplier c ON o.supplier_id = c.id '+
+                    'inner join expense_details ed on o.id = ed.expense_id '+
+                    'group by 1,2,3,4;';
 
                 var queryParams = [];
 
