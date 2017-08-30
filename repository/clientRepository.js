@@ -48,10 +48,10 @@
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('INSERT INTO client (name, user_id, cnpj, address, city, state, zipcode, phone_number, responsible_buyer, state_registration) ' +
+                    connection.query('INSERT INTO client (name, user_id, email, address, city, state, zipcode, phone_number, responsible_buyer, birthday) ' +
                                         'VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                        [newClient.name, newClient.user_id || null, newClient.cnpj, newClient.address, newClient.city,
-                            newClient.state, newClient.zipcode || null, newClient.phone_number, newClient.responsible_buyer, newClient.state_registration], function(queryError, resultInfo) {
+                        [newClient.name, newClient.user_id || null, newClient.email, newClient.address, newClient.city,
+                            newClient.state, newClient.zipcode || null, newClient.phone_number, newClient.responsible_buyer, newClient.birthday], function(queryError, resultInfo) {
 
                             if(queryError)
                                 deferred.reject(queryError);
@@ -77,12 +77,12 @@
 
                 return queryFromPool(function(deferred, connection) {
 
-                    connection.query('UPDATE client SET name = ?, user_id = ?, cnpj = ?' +
+                    connection.query('UPDATE client SET name = ?, user_id = ?, email = ?' +
                         ', address = ?, city = ?, state = ?, zipcode = ?, phone_number = ?, responsible_buyer = ?' +
-                        ', state_registration = ? WHERE id = ?',
-                        [updatedClient.name, updatedClient.user_id || null, updatedClient.cnpj,
+                        ', birthday = ? WHERE id = ?',
+                        [updatedClient.name, updatedClient.user_id || null, updatedClient.email,
                             updatedClient.address, updatedClient.city, updatedClient.state, updatedClient.zipcode || null,
-                            updatedClient.phone_number, updatedClient.responsible_buyer, updatedClient.state_registration ,clientId], function(queryError) {
+                            updatedClient.phone_number, updatedClient.responsible_buyer, updatedClient.birthday ,clientId], function(queryError) {
 
                             if(queryError)
                                 deferred.reject(queryError);
